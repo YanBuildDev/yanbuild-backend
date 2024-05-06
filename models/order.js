@@ -33,7 +33,7 @@ const orderSchema = new Schema({
     },
     companyName: {
         type: String,
-        required: true
+        required: false
     },
     projectKind: {
         type: [{
@@ -61,15 +61,19 @@ const orderSchema = new Schema({
     },
     contactTime: {
         type: String,
-        required: true
+        required: false
     },
     hearAboutUs: {
         type: String,
-        required: true
+        required: false
     },
     projectDesc: {
         type: String,
-        required: true
+        required: false
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 }, {versionKey: false, timestamps: true})
 

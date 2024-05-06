@@ -5,11 +5,9 @@ const mongoose = require("mongoose");
 let { DB_HOST, PORT=3313 } = process.env;
 
 if(process.env.NODE_ENV === 'local'){
-  DB_HOST = 'mongodb+srv://Andrey:AndreyMongoDB@profoundmaincluster.ttmqd90.mongodb.net/test'
+  // DB_HOST = 'mongodb+srv://test:egor2006@atlascluster.i6jqxpj.mongodb.net/?retryWrites=true&w=majority'
 }
-// if(process.env.NODE_ENV === 'local'){
-//   DB_HOST = 'mongodb+srv://test:egor2006@atlascluster.i6jqxpj.mongodb.net/?retryWrites=true&w=majority'
-// }
+
 mongoose
   .connect(DB_HOST)
   .then(() => {

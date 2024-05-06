@@ -12,7 +12,7 @@ const { validateBody, validateHeaders, validateParams, isLoggedInAdmin } = requi
 
 router.post(
     "/create",
-    isLoggedInAdmin,
+    // isLoggedInAdmin,
     validateBody(
         adminJoiSchema
     ),

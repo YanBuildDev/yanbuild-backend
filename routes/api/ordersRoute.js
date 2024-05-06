@@ -82,7 +82,7 @@ const createCriteria = (payload) => {
 // Create order
 router.post(
     "/create",
-    validateBody(orderJoiSchemaRequired),
+    // validateBody(orderJoiSchemaRequired),
     async (req,res,next) => {
         try {
             let payloadData = req.body
