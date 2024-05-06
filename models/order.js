@@ -3,6 +3,10 @@ const Joi = require('joi')
 const orderConstants = require('../constants/orderConstants')
 
 const orderSchema = new Schema({
+    orderNumber: {
+        type: String,
+    },
+    status: String,
     firstName: {
         type: String,
         required: true
@@ -77,7 +81,6 @@ const orderSchema = new Schema({
     }
 }, {versionKey: false, timestamps: true})
 
-// contactSchema.post("save", onSaveErrors);
 
 const Order = model('orders', orderSchema)
 

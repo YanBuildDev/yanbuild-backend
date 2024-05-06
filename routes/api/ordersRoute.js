@@ -87,7 +87,14 @@ router.post(
         try {
             let payloadData = req.body
 
-            let order = await Order.create(payloadData)
+            let orders = await Order.find({}, {_id:1})
+
+            let order = await Order.create({...payloadData, orderNumber: 999 + orders.length + 1 })
+
+            // await sendEmail({
+            //     email: 'sokurenko337@gmail.com',
+            //     order
+            // })
 
             let returnData = {
                 order: order
@@ -123,7 +130,7 @@ router.get(
             let payload = req.query || {}
             let sorting = payload.sorting
     
-            let sortingCriteria = { $sort: {createdAt: 1}}
+            let sortingCriteria = { $sort: {createdAt: -1}}
             
             let criteria = createCriteria(payload)
     

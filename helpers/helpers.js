@@ -36,35 +36,23 @@ const createToken = (tokenData,options) => {
     return jwt.sign(tokenData,SECRET_KEY,options)
 }
 
-const sendEmail = async({email,type,contact}) => {
+const sendEmail = async({email, order }) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'profoundconf@gmail.com',
+          user: 'yanbuildinc@outlook.com',
           pass: 'vfvneakvapkavhza'
         }
     });
 
     let html,subject;
 
-    switch(type){
-        case 'scan': {
-            const layout = require('../email templates/scan')
-            subject = 'Your Profound address'
-            html  = compileTemplate(layout, { 
-                contact: contact
-            })
-            break
-        }
-        case 'register': {
-            const layout = require('../email templates/registration')
-            subject = 'Profound conf'
-            html  = compileTemplate(layout, { 
-                contact: contact
-            })
-            break
-        }
-    }
+    const layout = require('../email templates/create')
+        subject = 'Order #' + order.orderNumber + ' was created'
+        html  = compileTemplate(layout, { 
+        order: order
+    })
+            
 
     let to = email
     if(!to){
@@ -81,7 +69,7 @@ const sendEmail = async({email,type,contact}) => {
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
-          next(makeError(501,'Email was not send'))
+          throw makeError(501,'Email was not send')
         } else {
           console.log('Email sent: ' + info.response);
         }
